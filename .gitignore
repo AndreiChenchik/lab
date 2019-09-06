@@ -1,0 +1,6 @@
+# files to ignore
+# jupyter notebooks versioning
+.ipynb_checkpoints/
+
+# temp datasets (dynamicaly downloaded)
+.datasets/

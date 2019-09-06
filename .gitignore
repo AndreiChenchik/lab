@@ -4,3 +4,10 @@
 
 # temp datasets (dynamicaly downloaded)
 .datasets/
+
+# NDA
+abbyy/
+yandex_praktikum/
+
+# private files
+family/

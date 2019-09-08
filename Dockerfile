@@ -16,7 +16,11 @@ RUN conda install -c conda-forge -y \
 		jupyter_nbextensions_configurator && \
 	conda install -c r -y \
 		r-hmisc \
-		r-psych && \
+		r-psych \
+		r-gvlma \
+		r-ROCR \
+		r-xtable \
+		r-stargazer && \
 	conda clean --all -f -y && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \

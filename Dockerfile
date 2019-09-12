@@ -22,7 +22,7 @@ RUN conda install -c conda-forge -y \
 		r-stargazer && \
 	conda install -y conda-build && \
 	conda skeleton cran gvlma && \
-	conda build --r 3.6.1 r-gvlma && \
+	conda build --R 3.6.1 r-gvlma && \
 	conda install -y -c local r-gvlma && \
 	conda clean --all -f -y && \
 	jupyter nbextension enable freeze/main && \

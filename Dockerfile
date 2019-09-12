@@ -17,10 +17,13 @@ RUN conda install -c conda-forge -y \
 	conda install -c r -y \
 		r-hmisc \
 		r-psych \
-		r-gvlma \
 		r-ROCR \
 		r-xtable \
 		r-stargazer && \
+	conda install -y conda-build && \
+	conda skeleton cran gvlma && \
+	conda build r-gvlma && \
+	conda install -y -c local r-gvlma && \
 	conda clean --all -f -y && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \

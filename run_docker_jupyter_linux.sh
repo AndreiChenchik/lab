@@ -19,9 +19,13 @@ if [ $# -eq 0 ]; then
     docker pull $IMAGE
 fi
 
-exec docker run --rm -p "$PORT":8888 -v "$PWD":/home/jovyan/work "$IMAGE" start-notebook.sh \
-    --notebook-dir=/home/jovyan/work \
-    --NotebookApp.ip=0.0.0.0 \
-    --NotebookApp.password_required=False \
-    --NotebookApp.token='' \
-    --NotebookApp.custom_display_url="http://localhost:$PORT"
+exec docker run \
+	--rm \
+	-p "$PORT":8888 \
+	-v "$PWD":/home/jovyan/work \
+	"$IMAGE" start-notebook.sh \
+    		--notebook-dir=/home/jovyan/work \
+    		--NotebookApp.ip=0.0.0.0 \
+    		--NotebookApp.password_required=False \
+    		--NotebookApp.token='' \
+    		--NotebookApp.custom_display_url="http://localhost:$PORT"

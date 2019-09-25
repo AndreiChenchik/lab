@@ -3,7 +3,7 @@ REM Attention: Windows Toolbox users - you MUST put the course repo in C:\Users\
 REM Attention: Use Ctrl-C to shut down. If you close the window, the container may still be running.
 REM 
 
-SET IMAGE="gumlooter/jupyter"
+SET IMAGE="docker.pkg.github.com/gumlooter/lab/jupyter"
 SET PORT="4544"
 
 REM check for new versin of the image

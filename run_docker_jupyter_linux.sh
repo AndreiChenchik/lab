@@ -7,7 +7,7 @@
 #   image - optional. A custom image to use instead of default. If it is given, 
 #           we will not attemp to pull the latest image. This allows local image development.
 
-IMAGE=${1:-gumlooter/jupyter}
+IMAGE=${1:-docker.pkg.github.com/gumlooter/lab/jupyter}
 
 #custom port
 PORT=4544

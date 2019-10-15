@@ -28,4 +28,11 @@ exec docker run \
     		--NotebookApp.ip=0.0.0.0 \
     		--NotebookApp.password_required=False \
     		--NotebookApp.token='' \
-    		--NotebookApp.custom_display_url="http://localhost:$PORT"
+    		--NotebookApp.custom_display_url="http://localhost:$PORT" &
+
+sleep 5
+xdg-open "http://localhost:$PORT"
+
+wait
+echo "Container stopped for some reason. Shutting down in 10 sec..."
+sleep 10

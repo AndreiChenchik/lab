@@ -9,10 +9,12 @@ SET PORT="4544"
 REM check for new versin of the image
 docker pull %IMAGE%
 
-docker run --rm -p %PORT%:8888 -v %cd%:/home/jovyan/work %IMAGE% start-notebook.sh ^
+start /b docker run --rm -p %PORT%:8888 -v %cd%:/home/jovyan/work %IMAGE% start-notebook.sh ^
     --notebook-dir=/home/jovyan/work ^
     --NotebookApp.ip=0.0.0.0 ^
     --NotebookApp.password_required=False ^
     --NotebookApp.token='' ^
     --NotebookApp.custom_display_url='http://localhost:%PORT%'
+
+timeout /t 3 /nobreak > NUL & start "" http://localhost:%PORT%
 

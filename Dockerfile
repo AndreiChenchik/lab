@@ -13,7 +13,8 @@ RUN conda install -c conda-forge -y \
 		oauth2client \
 		pyopenssl \
 		jupyter_contrib_nbextensions \
-		jupyter_nbextensions_configurator && \
+		jupyter_nbextensions_configurator \
+		autopep8 && \
 	conda install -c r -y \
 		r-hmisc \
 		r-psych \
@@ -31,5 +32,8 @@ RUN conda install -c conda-forge -y \
 	jupyter nbextension enable execute_time/ExecuteTime && \
 	jupyter nbextension enable datestamper/main && \
 	jupyter nbextension enable hide_input_all/main && \
+	jupyter nbextension enable varInspector/main && \
+	jupyter nbextension enable code_prettify/autopep8 && \
+	jupyter nbextension enable toc2/main && \
 	jq -c '.autosavetime_set_starting_interval = true' /home/jovyan/.jupyter/nbconfig/notebook.json > tmp.$$.json && \
 	mv tmp.$$.json /home/jovyan/.jupyter/nbconfig/notebook.json

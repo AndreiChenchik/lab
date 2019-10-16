@@ -26,6 +26,7 @@ RUN conda install -c conda-forge -y \
 	conda build --R 3.6.1 r-gvlma && \
 	conda install -y -c local r-gvlma && \
 	conda clean --all -f -y && \
+	pip install pymystem3 && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \
 	jupyter nbextension enable collapsible_headings/main && \

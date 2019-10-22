@@ -6,7 +6,7 @@ RUN apt-get update && \
     	apt-get install -y --no-install-recommends jq && \
    	rm -rf /var/lib/apt/lists/* && \
 	mkdir -p /usr/local/bin/before-notebook.d && \
-	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/before-notebook.d/lsp.sh && \
+	echo 'nohup node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/before-notebook.d/lsp.sh && \
 	chmod a+x /usr/local/bin/before-notebook.d/lsp.sh
 
 USER $NB_UID

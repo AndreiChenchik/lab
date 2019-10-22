@@ -15,7 +15,8 @@ RUN conda install -c conda-forge -y \
 		jupyter_contrib_nbextensions \
 		jupyter_nbextensions_configurator \
 		autopep8 \
-		nbdime && \
+		nbdime \
+		jupyterlab-git && \
 	conda install -c r -y \
 		r-hmisc \
 		r-psych \

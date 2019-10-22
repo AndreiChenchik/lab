@@ -16,7 +16,9 @@ RUN conda install -c conda-forge -y \
 		jupyter_nbextensions_configurator \
 		autopep8 \
 		nbdime \
-		jupyterlab-git && \
+		jupyterlab_code_formatter \
+		black \
+		yapf && \
 	conda install -c r -y \
 		r-hmisc \
 		r-psych \
@@ -40,4 +42,13 @@ RUN conda install -c conda-forge -y \
 	jupyter nbextension enable toc2/main && \
 	jq -c '.autosavetime_set_starting_interval = true' /home/jovyan/.jupyter/nbconfig/notebook.json > tmp.$$.json && \
 	mv tmp.$$.json /home/jovyan/.jupyter/nbconfig/notebook.json && \
-	nbdime extensions --enable
+	nbdime extensions --enable && \
+	jupyter labextension install @ryantam626/jupyterlab_code_formatter && \
+	jupyter labextension install @jupyterlab/toc && \
+	jupyter labextension install @krassowski/jupyterlab_go_to_definition && \
+	jupyter serverextension enable --py jupyterlab_code_formatter && \
+	jupyter lab build && \
+	mkdir -p /usr/local/bin/before-notebook.d && \
+	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/before-notebook.d/lsp.sh && \
+	chmod a+x /usr/local/bin/before-notebook.d/lsp.sh && \
+	printf "langservers:\n  python:\n    - pyls" > /home/jovyan/servers.yml

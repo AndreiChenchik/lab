@@ -6,7 +6,9 @@ RUN apt-get update && \
     	apt-get install -y --no-install-recommends jq && \
    	rm -rf /var/lib/apt/lists/* && \
 	mkdir -p /usr/local/bin/before-notebook.d && \
-	echo 'nohup node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml &' > /usr/local/bin/before-notebook.d/lsp.sh && \
+	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/lsp.sh && \
+	chmod a+x /usr/local/bin/lsp.sh && \
+	echo 'nohup sh /usr/local/lsp.sh & echo "done!"' > /usr/local/bin/before-notebook.d/lsp.sh && \
 	chmod a+x /usr/local/bin/before-notebook.d/lsp.sh
 
 USER $NB_UID
@@ -37,6 +39,7 @@ RUN conda install -c conda-forge -y \
 	conda clean --all -f -y && \
 	pip install pymystem3 && \
 	pip install python-language-server[all] && \
+	pip install jupyterlab_sql && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \
 	jupyter nbextension enable collapsible_headings/main && \
@@ -53,6 +56,7 @@ RUN conda install -c conda-forge -y \
 	jupyter labextension install @jupyterlab/toc && \
 	jupyter labextension install @krassowski/jupyterlab_go_to_definition && \ 
 	jupyter labextension install @krassowski/jupyterlab-lsp && \
+	jupyter serverextension enable jupyterlab_sql --py --sys-prefix && \
 	jupyter serverextension enable --py jupyterlab_code_formatter && \
 	jupyter lab build && \
 	printf "langservers:\n  python:\n    - pyls" > /home/jovyan/servers.yml

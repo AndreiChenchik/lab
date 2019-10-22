@@ -21,7 +21,9 @@ RUN conda install -c conda-forge -y \
 		nbdime \
 		jupyterlab_code_formatter \
 		black \
-		yapf && \
+		yapf \
+		python-language-server \
+		python-jsonrpc-server && \
 	conda install -c r -y \
 		r-hmisc \
 		r-psych \

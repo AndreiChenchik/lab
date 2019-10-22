@@ -4,7 +4,10 @@ USER root
 
 RUN apt-get update && \
     	apt-get install -y --no-install-recommends jq && \
-   	rm -rf /var/lib/apt/lists/*
+   	rm -rf /var/lib/apt/lists/* && \
+	mkdir -p /usr/local/bin/before-notebook.d && \
+	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/before-notebook.d/lsp.sh && \
+	chmod a+x /usr/local/bin/before-notebook.d/lsp.sh
 
 USER $NB_UID
 
@@ -48,7 +51,4 @@ RUN conda install -c conda-forge -y \
 	jupyter labextension install @krassowski/jupyterlab_go_to_definition && \
 	jupyter serverextension enable --py jupyterlab_code_formatter && \
 	jupyter lab build && \
-	mkdir -p /usr/local/bin/before-notebook.d && \
-	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/before-notebook.d/lsp.sh && \
-	chmod a+x /usr/local/bin/before-notebook.d/lsp.sh && \
 	printf "langservers:\n  python:\n    - pyls" > /home/jovyan/servers.yml

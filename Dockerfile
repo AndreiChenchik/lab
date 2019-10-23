@@ -21,6 +21,7 @@ RUN conda install -c conda-forge -y \
 		jupyter_nbextensions_configurator \
 		autopep8 \
 		nbdime \
+		jupyterlab-git \
 		jupyterlab_code_formatter \
 		black \
 		yapf \

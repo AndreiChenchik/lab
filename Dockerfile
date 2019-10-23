@@ -3,8 +3,8 @@ FROM jupyter/datascience-notebook
 USER root
 
 RUN apt-get update && \
-    	apt-get install -y --no-install-recommends jq && \
-   	rm -rf /var/lib/apt/lists/* && \
+	apt-get install -y --no-install-recommends jq && \
+	rm -rf /var/lib/apt/lists/* && \
 	mkdir -p /usr/local/bin/before-notebook.d && \
 	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/lsp.sh && \
 	chmod a+x /usr/local/bin/lsp.sh && \
@@ -26,7 +26,8 @@ RUN conda install -c conda-forge -y \
 		black \
 		yapf \
 		python-language-server \
-		python-jsonrpc-server && \
+		python-jsonrpc-server \
+		psycopg2 && \
 	conda install -c r -y \
 		r-hmisc \
 		r-psych \

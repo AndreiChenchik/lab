@@ -8,7 +8,7 @@ RUN apt-get update && \
 	mkdir -p /usr/local/bin/before-notebook.d && \
 	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/lsp.sh && \
 	chmod a+x /usr/local/bin/lsp.sh && \
-	echo 'nohup sh /usr/local/lsp.sh & echo "done!"' > /usr/local/bin/before-notebook.d/lsp.sh && \
+	echo 'nohup sh /usr/local/lsp.sh & disown' > /usr/local/bin/before-notebook.d/lsp.sh && \
 	chmod a+x /usr/local/bin/before-notebook.d/lsp.sh
 
 USER $NB_UID

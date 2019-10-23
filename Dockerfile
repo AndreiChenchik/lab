@@ -54,8 +54,6 @@ RUN conda install -c conda-forge -y \
 	nbdime extensions --enable && \
 	jupyter labextension install @ryantam626/jupyterlab_code_formatter && \
 	jupyter labextension install @jupyterlab/toc && \
-	jupyter labextension install @krassowski/jupyterlab_go_to_definition && \ 
-	jupyter labextension install @krassowski/jupyterlab-lsp && \
 	jupyter serverextension enable jupyterlab_sql --py --sys-prefix && \
 	jupyter serverextension enable --py jupyterlab_code_formatter && \
 	jupyter lab build && \
